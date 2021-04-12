@@ -1,0 +1,17 @@
+application:
+   dates: [2021-01-01, 2021-01-02, 2021-01-03]
+   store_folder: data
+
+auth:
+  url: https://robot-dreams-de-api.herokuapp.com/
+  endpoint: auth
+  type: JWT
+  credentials:
+    username: rd_dreams
+    password: djT6LasE
+
+api:
+  url: https://robot-dreams-de-api.herokuapp.com/
+  endpoint: out_of_stock
+
+
