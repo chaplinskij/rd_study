@@ -5,35 +5,13 @@ import yaml
 from datetime import date
 from requests import HTTPError
 
-
-DEFAULT_CONFIGS = {
-    'application': {
-        'dates': ['2021-01-01', '2021-01-02', '2021-01-03'],
-        'store_path': 'data',
-    },
-    'auth': {
-        'url': 'https://robot-dreams-de-api.herokuapp.com/',
-        'endpoint': 'auth',
-        'type': 'JWT',
-        'credentials': {
-            'username': 'rd_dreams',
-            'password': 'djT6LasE',
-        },
-    },
-    'api': {
-        'url': 'https://robot-dreams-de-api.herokuapp.com/',
-        'endpoint': 'out_of_stock',
-    },
-}
-
 BASE_DIR = os.getcwd()
 try:
     file_path = os.path.join(BASE_DIR, 'configs.yml')
     with open(file_path, 'r') as _file:
-        CONFIGS = yaml.load(_file, Loader=yaml.FullLoader)
+        CONFIGS = yaml.safe_load(_file)
 except FileNotFoundError:
-    print(f'No such file with configs. Default configs is used.')
-    CONFIGS = DEFAULT_CONFIGS
+    raise FileNotFoundError(f'No such file with configs: {file_path}')
 
 
 def authorize() -> str:
